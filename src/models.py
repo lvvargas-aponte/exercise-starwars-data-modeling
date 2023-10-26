@@ -65,9 +65,13 @@ class Favorites(Base):
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    user = relationship(User)
     character_id = Column(Integer, ForeignKey('character.id'), nullable=False)
+    character = relationship(Character)
     planet_id = Column(Integer, ForeignKey('planet.id'), nullable=False)
+    planet = relationship(Planet)
     vehicle_id = Column(Integer, ForeignKey('vehicle.id'), nullable=False)
+    vehicle = relationship(Vehicle)
 
 class Post(Base):
     __tablename__ = 'post'
@@ -77,6 +81,7 @@ class Post(Base):
     title = Column(String(250), nullable=False)
     content = Column(String(250), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    user = relationship(User)
     created_at = Column(DateTime, nullable=False)
     modified_at = Column(DateTime, nullable=False)
     
@@ -87,7 +92,9 @@ class Comment(Base):
     id = Column(Integer, primary_key=True)
     comment = Column(String(250), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    user = relationship(User)
     post_id = Column(Integer, ForeignKey('post.id'), nullable=False)
+    post = relationship(Post)
     created_at = Column(DateTime, nullable=False)
     modified_at = Column(DateTime, nullable=False)
 
